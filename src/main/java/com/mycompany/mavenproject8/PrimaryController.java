@@ -16,16 +16,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
-public class PrimaryController implements Initializable  {
+public class PrimaryController implements Initializable {
+
     private Alert alerta;
     static Conection con;
     static Connection cn;
-    private String[] listaPreguntas = {"Nombre de la Primera Mascota?","Cual es su Comida Favorita?","Marca del Telefono Anterior?"};
+//    static Conection con = new Conection();
+//    static Connection cn = con.conexion();
+    private String[] listaPreguntas = {"Nombre de la Primera Mascota?", "Cual es su Comida Favorita?", "Marca del Telefono Anterior?"};
 
     //Conponentes del FXML
     @FXML
     private PasswordField regContrasena;
 
+    
     @FXML
     private TextField regNombreUsuario;
 
@@ -81,7 +85,7 @@ public class PrimaryController implements Initializable  {
             alerta.setContentText("Introdusca su Usuario y/o Contaseña");
             alerta.showAndWait();
 
-        }else{
+        } else {
 //            ParejasApplication.setRoot("adminpanel");
         }
 
@@ -101,15 +105,18 @@ public class PrimaryController implements Initializable  {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        con = new Conection();
+            con = new Conection();
+        if (!con.conected) {
+            cn = con.conexion();
+        }
     }
+
     @FXML
     private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
-        cn = con.conexion();
-        if(con.conected){
+        if (con.conected) {
             System.out.println("Conneccion con el sevidor activa");
-        }else{
+        } else {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Mensage de Error");
             alerta.setHeaderText(null);

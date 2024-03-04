@@ -17,7 +17,7 @@
          <top>
             <AnchorPane prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane prefHeight="25.0" style="-fx-background-color: #032d4d;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="panelSuperior" onMouseDragged="#mouseDrage" onMousePressed="#mousePresed" prefHeight="25.0" style="-fx-background-color: #032d4d;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fx:id="cerrar" fitHeight="15.0" fitWidth="15.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
                            <image>
@@ -71,7 +71,7 @@
                <children>
                   <VBox layoutX="14.0" layoutY="43.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="53.0">
                      <children>
-                        <JFXButton onAction="#getTabla" prefHeight="38.0" prefWidth="176.0" text="Dashboard" textFill="WHITE">
+                        <JFXButton fx:id="dashboart" onAction="#getDashboart" prefHeight="38.0" prefWidth="176.0" text="Dashboard" textFill="WHITE">
                            <font>
                               <Font name="Roboto Bold" size="15.0" />
                            </font>
@@ -83,7 +83,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton prefHeight="38.0" prefWidth="176.0" text="Agregar" textFill="WHITE">
+                        <JFXButton fx:id="btnAgegar" onAction="#setAgregarForm" prefHeight="38.0" prefWidth="176.0" text="Agregar" textFill="WHITE">
                            <font>
                               <Font name="Roboto Bold" size="15.0" />
                            </font>
@@ -107,7 +107,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton prefHeight="38.0" prefWidth="176.0" text="BackUp" textFill="WHITE">
+                        <JFXButton fx:id="btnBckUp" onAction="#backUo" prefHeight="38.0" prefWidth="176.0" text="BackUp" textFill="WHITE">
                            <font>
                               <Font name="Roboto Bold" size="15.0" />
                            </font>
@@ -115,6 +115,18 @@
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../Imagenes/copias-de-seguridad.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="btnRestore" onAction="#restore" prefHeight="38.0" prefWidth="176.0" text="Restore" textFill="WHITE">
+                           <font>
+                              <Font name="Roboto Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Imagenes/restaurar.png" />
                                  </image>
                               </ImageView>
                            </graphic>

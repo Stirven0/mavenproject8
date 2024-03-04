@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class Conection {
     Connection cn;
-    public boolean conected;
+    public boolean conected = false;
 
     public Connection conexion (){
         String url = "jdbc:mysql://localhost:3306/"; //Direccion de la basde de datos (IP:puerto)

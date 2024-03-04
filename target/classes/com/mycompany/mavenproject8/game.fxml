@@ -13,7 +13,7 @@
    <children>
       <AnchorPane prefHeight="410.0" prefWidth="464.0">
          <children>
-            <AnchorPane layoutX="103.0" layoutY="106.0" prefHeight="275.0" prefWidth="245.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+            <AnchorPane layoutX="67.0" layoutY="106.0" prefHeight="275.0" prefWidth="329.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="68.0">
                <children>
                   <GridPane hgap="25.0" vgap="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columnConstraints>
