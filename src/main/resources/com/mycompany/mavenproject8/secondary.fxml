@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject8.SecondaryController">
+   <children>
+      <BorderPane fx:id="brPanel" prefHeight="480.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane prefHeight="25.0" style="-fx-background-color: #032d4d;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fx:id="cerrar" fitHeight="15.0" fitWidth="15.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                           <image>
+                              <Image url="@../../../Imagenes/eliminar.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0">
+                           <image>
+                              <Image url="@../../../title.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets left="8.0" right="8.0" />
+                     </padding>
+                  </AnchorPane>
+                  <HBox alignment="TOP_RIGHT" layoutX="170.0" layoutY="-17.0" prefHeight="45.0" prefWidth="464.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                     <children>
+                        <JFXButton fx:id="btngame" onAction="#setGame" prefHeight="38.0" prefWidth="136.0" text="Jugar">
+                           <font>
+                              <Font name="Roboto Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Imagenes/game.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="btnSalir" alignment="CENTER" onAction="#switchToPrimary" prefHeight="38.0" prefWidth="136.0" text="Salir">
+                           <font>
+                              <Font name="Roboto Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Imagenes/cerrar-sesión.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <JFXHamburger fx:id="btnmenu" layoutX="22.0" layoutY="35.0" onMouseClicked="#menuEvent" />
+               </children>
+            </AnchorPane>
+         </top>
+         <left>
+            <AnchorPane fx:id="menu" prefHeight="362.0" prefWidth="176.0" style="-fx-background-color: #0A4696;" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox layoutX="14.0" layoutY="43.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="53.0">
+                     <children>
+                        <JFXButton onAction="#getTabla" prefHeight="38.0" prefWidth="176.0" text="Dashboard" textFill="WHITE">
+                           <font>
+                              <Font name="Roboto Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Imagenes/tablero.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton prefHeight="38.0" prefWidth="176.0" text="Agregar" textFill="WHITE">
+                           <font>
+                              <Font name="Roboto Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Imagenes/usuario.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton prefHeight="38.0" prefWidth="176.0" text="Reporte" textFill="WHITE">
+                           <font>
+                              <Font name="Roboto Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Imagenes/gráfico.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton prefHeight="38.0" prefWidth="176.0" text="BackUp" textFill="WHITE">
+                           <font>
+                              <Font name="Roboto Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Imagenes/copias-de-seguridad.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>

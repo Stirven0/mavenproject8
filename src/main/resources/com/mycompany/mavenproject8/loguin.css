@@ -1,0 +1,38 @@
+.gradient{
+    -fx-background-color: linear-gradient(from 100.0% 0.0% to 0.0% 100.0%, #13629a 0.0%, #1a7c67 100.0%);
+}
+.white_form{
+    -fx-background-color: #ffffff;
+}
+.loguin-button{
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #069a24 0.0%, #147531 100.0%);
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+}
+.loguin-button:hover{
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #25bc1e 0.0%, #0f791d 99.3289%, #27a838 100.0%);
+
+}
+.textfiel{
+    -fx-background-color: transparent;
+    -fx-border-color: linear-gradient(from 100.0% 0.0% to 0.0% 100.0%, #13629a 0.0%, #1a7c67 100.0%);
+    -fx-border-width: .8px;
+}
+.textfiel:hover{
+    -fx-border-width: 1px;
+}
+.create-button{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: white;
+    -fx-font-size: 14px;
+    -fx-border-width: 1px;
+
+}
+.create-button:hover{
+    -fx-background-color: white ;
+    -fx-text-fill: #000000;
+}
