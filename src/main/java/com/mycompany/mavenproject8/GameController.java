@@ -11,7 +11,9 @@ import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Box;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
@@ -26,6 +28,15 @@ public class GameController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    @FXML
+    private Pane pnelIN;
+
+    @FXML
+    private Label singel;
+
+    @FXML
+    private Label two;
     @FXML
     private JFXButton btnBack;
 
@@ -46,5 +57,16 @@ public class GameController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    @FXML
+    void singelPlayer(MouseEvent event) {
+        pnelIN.setVisible(false);
+    }
+
+    @FXML
+    void twoPlayer(MouseEvent event) {
+
+        pnelIN.setVisible(false);
+    }
     
 }
