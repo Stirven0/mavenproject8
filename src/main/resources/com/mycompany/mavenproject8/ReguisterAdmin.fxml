@@ -13,8 +13,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="362.0" prefWidth="464.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.mycompany.mavenproject8.ReguisterAdminController">
+<AnchorPane id="AnchorPane" prefHeight="362.0" prefWidth="464.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject8.ReguisterAdminController">
    <children>
       <BorderPane layoutX="148.0" layoutY="13.0" prefHeight="362.0" prefWidth="468.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -41,16 +40,16 @@
                         </LinearGradient>
                      </textFill>
                   </Label>
-                  <TextField alignment="TOP_LEFT" layoutX="107.0" layoutY="59.0" prefHeight="30.0" prefWidth="250.0" promptText="Nombre de Usuario" styleClass="textfiel" stylesheets="@loguin.css" />
-                  <PasswordField layoutX="107.0" layoutY="101.0" prefHeight="30.0" prefWidth="250.0" promptText="Contraseña" styleClass="textfiel" stylesheets="@loguin.css" />
-                  <Button layoutX="107.0" layoutY="293.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" styleClass="loguin-button" stylesheets="@loguin.css" text="Registrarse" />
-                  <JFXCheckBox layoutX="172.0" layoutY="246.0" text="Permiso de administrador">
+                  <TextField fx:id="nameUser" alignment="TOP_LEFT" layoutX="107.0" layoutY="59.0" prefHeight="30.0" prefWidth="250.0" promptText="Nombre de Usuario" styleClass="textfiel" stylesheets="@loguin.css" />
+                  <PasswordField fx:id="contrasena" layoutX="107.0" layoutY="101.0" prefHeight="30.0" prefWidth="250.0" promptText="Contraseña" styleClass="textfiel" stylesheets="@loguin.css" />
+                  <Button fx:id="btnRegusterAdmin" layoutX="107.0" layoutY="293.0" mnemonicParsing="false" onAction="#reguister" prefHeight="40.0" prefWidth="250.0" styleClass="loguin-button" stylesheets="@loguin.css" text="Registrarse" />
+                  <JFXCheckBox fx:id="admin" layoutX="172.0" layoutY="246.0" text="Permiso de administrador">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </JFXCheckBox>
-                  <JFXComboBox layoutX="107.0" layoutY="148.0" prefHeight="25.0" prefWidth="250.0" promptText="Pregunta de seguridad" />
-                  <TextField alignment="TOP_LEFT" layoutX="107.0" layoutY="195.0" prefHeight="30.0" prefWidth="250.0" promptText="Respuesta" styleClass="textfiel" stylesheets="@loguin.css" />
+                  <JFXComboBox fx:id="pregunta" layoutX="107.0" layoutY="148.0" prefHeight="25.0" prefWidth="250.0" promptText="Pregunta de seguridad" />
+                  <TextField fx:id="respuesta" alignment="TOP_LEFT" layoutX="107.0" layoutY="195.0" prefHeight="30.0" prefWidth="250.0" promptText="Respuesta" styleClass="textfiel" stylesheets="@loguin.css" />
                </children>
             </AnchorPane>
          </center>

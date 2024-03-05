@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -42,7 +42,7 @@
                   </Label>
                   <TextField fx:id="iniNombreUsuario" alignment="TOP_LEFT" layoutX="35.0" layoutY="201.0" prefHeight="30.0" prefWidth="250.0" promptText="Nombre de Usuario" styleClass="textfiel" stylesheets="@loguin.css" />
                   <PasswordField fx:id="iniContrasena" layoutX="36.0" layoutY="257.0" prefHeight="30.0" prefWidth="250.0" promptText="Contraseña" styleClass="textfiel" stylesheets="@loguin.css" />
-                  <Button fx:id="iniBtn" layoutX="36.0" layoutY="324.0" mnemonicParsing="false" onAction="#switchToSecondary" prefHeight="40.0" prefWidth="250.0" styleClass="loguin-button" stylesheets="@loguin.css" text="Iniciar Secion" />
+                  <Button fx:id="iniBtn" layoutX="36.0" layoutY="324.0" mnemonicParsing="false" onAction="#iniBtn" prefHeight="40.0" prefWidth="250.0" styleClass="loguin-button" stylesheets="@loguin.css" text="Iniciar Secion" />
                   <Hyperlink fx:id="iniRecordar" layoutX="36.0" layoutY="287.0" text="Olvido su Contraseña?" />
                </children>
             </AnchorPane>
@@ -72,8 +72,8 @@
                   <TextField fx:id="regNombreUsuario" alignment="TOP_LEFT" layoutX="36.0" layoutY="119.0" prefHeight="30.0" prefWidth="250.0" promptText="Nombre de Usuario" styleClass="textfiel" stylesheets="@loguin.css" />
                   <PasswordField fx:id="regContrasena" layoutX="36.0" layoutY="166.0" prefHeight="30.0" prefWidth="250.0" promptText="Contraseña" styleClass="textfiel" stylesheets="@loguin.css" />
                   <Button fx:id="regBtn" layoutX="35.0" layoutY="336.0" mnemonicParsing="false" onAction="#regBtn" prefHeight="40.0" prefWidth="250.0" styleClass="loguin-button" stylesheets="@loguin.css" text="Registrarse" />
-                  <ComboBox fx:id="regPregunta" accessibleRole="CONTEXT_MENU" layoutX="35.0" layoutY="215.0" prefHeight="40.0" prefWidth="250.0" promptText="Pregunta de Seguridad" />
-                  <PasswordField fx:id="regRespuesta" layoutX="35.0" layoutY="274.0" prefHeight="30.0" prefWidth="250.0" promptText="Respuesta" styleClass="textfiel" stylesheets="@loguin.css" />
+                  <JFXComboBox fx:id="regPregunta" layoutX="36.0" layoutY="219.0" prefHeight="30.0" prefWidth="250.0" promptText="Pregunta de seguridad" />
+                  <TextField fx:id="regRespuesta" alignment="TOP_LEFT" layoutX="36.0" layoutY="274.0" prefHeight="30.0" prefWidth="250.0" promptText="Respuesta" styleClass="textfiel" stylesheets="@loguin.css" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="panelCrearCuenta" prefHeight="480.0" prefWidth="320.0" styleClass="gradient" stylesheets="@loguin.css">

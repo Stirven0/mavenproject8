@@ -6,7 +6,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +26,7 @@ import javafx.util.Duration;
 import com.jfoenix.controls.JFXButton;
 import com.mycompany.mavenproject8.lista.Nodo;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
 import org.kordamp.bootstrapfx.scene.layout.Panel;
 
@@ -30,6 +34,9 @@ public class SecondaryController {
 
     double x;
     double y;
+
+    @FXML
+    private JFXButton eliminar;
     @FXML
     private AnchorPane panelSuperior;
     @FXML
@@ -178,15 +185,46 @@ public class SecondaryController {
 
     @FXML
     void mouseDrage(MouseEvent event) {
-        Stage stage =  (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setX(event.getScreenX()-x);
-        stage.setY(event.getScreenY()-y);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setX(event.getScreenX() - x);
+        stage.setY(event.getScreenY() - y);
     }
 
     @FXML
     void mousePresed(MouseEvent event) {
         x = event.getSceneX();
         y = event.getSceneY();
+    }
+
+    @FXML
+    void delete(ActionEvent event) {
+        int id = TablaController.getID();
+        if (id != 0) {
+
+            try {
+                PreparedStatement ps = PrimaryController.getCn()
+                        .prepareStatement("DELETE FROM data WHERE id='" + Integer.toString(id) + "'");
+                int Result = ps.executeUpdate();
+                if (Result > 0) {
+                    fxmlLoader loader = new fxmlLoader();
+                    Parent view = loader.getParent("tabla");
+                    brPanel.setCenter(view);
+                    System.out.println("set tabla panel");
+
+                } else {
+                    Alert alerta = new Alert(Alert.AlertType.ERROR);
+                    alerta.setTitle("Mensage de Error");
+                    alerta.setHeaderText(null);
+                    alerta.setContentText("No fue posible Borrar el Usuario");
+                    alerta.showAndWait();
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al elimiar " + e);
+            }
+        }
+
+        System.out.println("deleter user");
+
     }
 
 }

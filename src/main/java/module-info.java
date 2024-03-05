@@ -5,6 +5,9 @@ module com.mycompany.mavenproject8 {
 
 
     opens com.mycompany.mavenproject8 to javafx.fxml;
+    opens com.mycompany.mavenproject8.Oters to javafx.base;
+    // opens com.mycompany.mavenproject8.Oters to javafx.base;
+
     exports com.mycompany.mavenproject8;
     requires mysql.connector.j;
     requires org.kordamp.bootstrapfx.core;
