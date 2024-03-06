@@ -24,9 +24,11 @@ import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.util.Duration;
 import com.jfoenix.controls.JFXButton;
+import com.mycompany.mavenproject8.Oters.Payer;
 import com.mycompany.mavenproject8.lista.Nodo;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import org.kordamp.bootstrapfx.scene.layout.Panel;
 
@@ -34,6 +36,11 @@ public class SecondaryController {
 
     double x;
     double y;
+    private static Payer payer = PrimaryController.getPayer();
+
+    public static Payer getPayer() {
+        return payer;
+    }
 
     @FXML
     private JFXButton eliminar;
@@ -59,14 +66,16 @@ public class SecondaryController {
 
     @FXML
     private BorderPane brPanel;
+    
 
     @FXML
     void cerrar(MouseEvent event) {
         System.exit(0);
     }
+    
 
     public void initialize(URL location, ResourceBundle resources) {
-
+        
     }
 
     @FXML

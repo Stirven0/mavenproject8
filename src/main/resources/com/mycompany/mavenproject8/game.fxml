@@ -2,149 +2,187 @@
 
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.paint.PhongMaterial?>
 <?import javafx.scene.shape.Box?>
+<?import javafx.scene.text.Font?>
 
-<Group xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject8.GameController">
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject8.GameController">
    <children>
-      <AnchorPane prefHeight="410.0" prefWidth="464.0">
+      <Group fx:id="game">
          <children>
-            <AnchorPane layoutX="67.0" layoutY="106.0" prefHeight="275.0" prefWidth="329.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="68.0">
+            <AnchorPane prefHeight="410.0" prefWidth="464.0">
                <children>
-                  <GridPane hgap="25.0" vgap="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <columnConstraints>
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
-                        <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
-                        <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
-                        <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
-                     </rowConstraints>
+                  <AnchorPane layoutX="67.0" layoutY="106.0" prefHeight="256.0" prefWidth="329.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="68.0">
                      <children>
-                        <Box fx:id="myBox" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
-                        <Box fx:id="myBox1" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.rowIndex="1">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
-                        <Box fx:id="myBox2" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.rowIndex="2">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
-                        <Box fx:id="myBox3" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.rowIndex="3">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
-                        <Box fx:id="myBox4" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="1">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
-                        <Box fx:id="myBox5" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
-                        <Box fx:id="myBox6" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
-                        <Box fx:id="myBox7" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
-                        <Box fx:id="myBox8" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
-                        <Box fx:id="myBox9" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
-                        <Box fx:id="myBox10" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
-                        <Box fx:id="myBox11" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="2">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
-                        <Box fx:id="myBox12" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="3">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
-                        <Box fx:id="myBox13" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
-                        <Box fx:id="myBox14" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
-                        <Box fx:id="myBox15" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                           <material>
-                              <PhongMaterial diffuseColor="blue" />
-                           </material>
-                        </Box>
+                        <GridPane hgap="25.0" vgap="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+                              <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+                              <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+                              <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Box fx:id="myBox" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                              <Box fx:id="myBox1" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.rowIndex="1">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                              <Box fx:id="myBox2" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.rowIndex="2">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                              <Box fx:id="myBox3" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.rowIndex="3">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                              <Box fx:id="myBox4" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="1">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                              <Box fx:id="myBox5" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                              <Box fx:id="myBox6" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                              <Box fx:id="myBox7" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                              <Box fx:id="myBox8" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                              <Box fx:id="myBox9" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                              <Box fx:id="myBox10" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                              <Box fx:id="myBox11" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="2">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                              <Box fx:id="myBox12" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="3">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                              <Box fx:id="myBox13" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                              <Box fx:id="myBox14" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                              <Box fx:id="myBox15" depth="20.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                 <material>
+                                    <PhongMaterial diffuseColor="blue" />
+                                 </material>
+                              </Box>
+                           </children>
+                        </GridPane>
                      </children>
-                  </GridPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columnConstraints>
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                  </AnchorPane>
+                  <AnchorPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label alignment="CENTER" text="Palyer" />
-                        <Label alignment="CENTER" text="timer" GridPane.columnIndex="1" />
-                        <Label alignment="CENTER" text="Puntos" GridPane.columnIndex="2" />
-                        <Label alignment="CENTER" text="Turnos" GridPane.columnIndex="3" />
-                        <Label alignment="CENTER" text="P1" GridPane.rowIndex="1" />
-                        <Label alignment="CENTER" text="P2" GridPane.rowIndex="2" />
-                        <Label alignment="CENTER" text="timer" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label alignment="CENTER" text="timer" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label alignment="CENTER" text="Puntos" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label alignment="CENTER" text="Puntos" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Label alignment="CENTER" text="Turnos" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <Label alignment="CENTER" text="Turnos" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label fx:id="namePlayer" alignment="CENTER" text="P1" GridPane.rowIndex="1" />
+                              <Label fx:id="nameInvitado" alignment="CENTER" text="Invitado" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER" text="timer" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="puntosInvitado" alignment="CENTER" text="Puntos" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Label fx:id="puntosPlayer" alignment="CENTER" text="Puntos" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
                      </children>
-                  </GridPane>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>
-      </AnchorPane>
+      </Group>
+      <Group fx:id="selectedPlayers" visible="false">
+         <children>
+            <AnchorPane prefHeight="410.0" prefWidth="464.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="72.0" layoutY="37.0" text="Seleccionar Jugadores">
+                     <font>
+                        <Font name="Roboto Bold" size="31.0" />
+                     </font>
+                  </Label>
+                  <Pane fx:id="twoPlayer" layoutX="183.0" layoutY="248.0" onMouseClicked="#twoPlayerMouseClicked" onMouseEntered="#twoPlayerMouseEnterred" onMouseExited="#twoPlayerMouseExite">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Imagenes/guardaespaldas1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="71.0" layoutX="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Imagenes/guardaespaldas1.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="singelPlayyer" layoutX="183.0" layoutY="107.0" onMouseClicked="#singelPlayyerMouseClicked" onMouseEntered="#singelPlayyerMouseEntered" onMouseExited="#singelPlayerMouseExite" prefHeight="71.0" prefWidth="98.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="71.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Imagenes/guardaespaldas1.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+         </children>
+      </Group>
    </children>
-</Group>
+</StackPane>
