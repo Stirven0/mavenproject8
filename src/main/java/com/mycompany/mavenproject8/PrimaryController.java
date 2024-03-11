@@ -34,10 +34,10 @@ public class PrimaryController implements Initializable {
     private static ResultSet rows;
     private static Lista playerList;
 
-    private static Payer payer;
+    private static Payer payerselected;
 
-    public static Payer getPayer() {
-        return payer;
+    public static Payer getPayerselected() {
+        return payerselected;
     }
 
     static public Lista getPlayerList() {
@@ -173,9 +173,9 @@ public class PrimaryController implements Initializable {
 
         } else {
             while ((j++) < playerList.zise()) {
-
-                if (playerList.get(j - 1).getUsuario().equals(iniNombreUsuario.getText())) {
-                    payer = playerList.get(j-1);
+                Payer payeraux = playerList.get(j - 1);
+                if (payeraux.getUsuario().equals(iniNombreUsuario.getText()) && payeraux.getContrasena().equals(iniContrasena.getText())) {
+                    payerselected = payeraux;
                     System.out.println("user is logued");
                     limpiarFormularios();
                     App.setRoot("secondary");

@@ -36,7 +36,7 @@ public class SecondaryController {
 
     double x;
     double y;
-    private static Payer payer = PrimaryController.getPayer();
+    private static Payer payer = PrimaryController.getPayerselected();
 
     public static Payer getPayer() {
         return payer;
