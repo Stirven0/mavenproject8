@@ -37,148 +37,148 @@
                                     </rowConstraints>
                                     <children>
                                         <Box fx:id="myBox" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                         <Box fx:id="myBox1" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.rowIndex="1">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                         <Box fx:id="myBox2" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.rowIndex="2">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                         <Box fx:id="myBox3" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.rowIndex="3">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                         <Box fx:id="myBox4" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="1">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                         <Box fx:id="myBox5" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                         <Box fx:id="myBox6" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                         <Box fx:id="myBox7" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                         <Box fx:id="myBox8" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                         <Box fx:id="myBox9" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                         <Box fx:id="myBox10" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                         <Box fx:id="myBox11" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="2">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                         <Box fx:id="myBox12" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="3">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                         <Box fx:id="myBox13" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                         <Box fx:id="myBox14" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                         <Box fx:id="myBox15" depth="0.0" height="50.0" onMouseClicked="#rotar" width="50.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                            <material>
+                                            <!-- <material>
                                                 <PhongMaterial>
                                                     <diffuseMap>
                                                         <Image url="@imgGame/pregunta.png" />
                                                     </diffuseMap>
                                                 </PhongMaterial>
-                                            </material>
+                                            </material> -->
                                         </Box>
                                     </children>
                                 </GridPane>
