@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
@@ -24,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Material;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Shape;
@@ -46,6 +49,9 @@ public class GameController implements Initializable {
     private final String carpetaImagenes = defaultResour + "imgGame/images";
     private static List<Image> listaImages = new ArrayList<>();
     private static List<PhongMaterial> listMaterials = new ArrayList<>();
+    private Box boxAux;
+    private Material m1;
+    private Material m2;
 
     @FXML
     private Box myBox;
@@ -130,6 +136,7 @@ public class GameController implements Initializable {
 
     private int puntosp;
     private int puntosinv;
+    private boolean materialDefaul;
 
     @FXML
     void salir_del_panel(ActionEvent event) {
@@ -139,48 +146,88 @@ public class GameController implements Initializable {
     @FXML
     protected void rotar(MouseEvent event) {
 
-        // Image imagen = new Image("imgGame/car.png");
+        if (boxAux == null) {
+            boxAux = ((Box) event.getSource());
+            boxAux.setDisable(true);
+            materialDefaul = false;
+            rotation1(((Box) event.getSource()));
 
-        // PhongMaterial material = new PhongMaterial();
-        // material.setDiffuseMap(imagen);
+        } else {
 
-        // Timeline timeline = new Timeline(
-        // new KeyFrame(Duration.ZERO, new KeyValue(((Shape3D)
-        // event.getSource()).materialProperty(), ((Shape3D)
-        // event.getSource()).getMaterial())),
-        // new KeyFrame(new Duration(1000), new KeyValue(((Shape3D)
-        // event.getSource()).materialProperty(), material, Interpolator.LINEAR)));
-        // timeline.setAutoReverse(true);
-        // timeline.play();
-        // RotateTransition rotate = new RotateTransition();
-        // rotate.setDuration(Duration.seconds(duration));
-        // rotate.setNode((Box) event.getSource());
-        // rotate.setAxis(Rotate.Y_AXIS);
-        // rotate.setByAngle(90);
-        // rotate.setOnFinished(evento -> {
+            // setMaterilBox(((Box) event.getSource()));
 
-        // ((Shape3D) event.getSource()).setMaterial(material);
+            rotation1(((Box) event.getSource()));
 
-        // RotateTransition rotate1 = new RotateTransition();
-        // rotate1.setDuration(Duration.seconds(duration));
-        // rotate1.setNode((Box) event.getSource());
-        // rotate1.setAxis(Rotate.Y_AXIS);
-        // rotate1.setByAngle(90);
-        // rotate1.play();
-        // });
-        // rotate.play();
+            m1 = boxAux.getMaterial();
+            m2 = ((Box) event.getSource()).getMaterial();
 
-        rotation1(((Box) event.getSource()));
+            if (m1.equals(m2)) {
 
-        // switch (((Box)event.getSource()).getId()) {
-        // case "myBox":
-        // System.out.println("Esto es dentro del case -myBox-");
-        // break;
+                System.out.println("los materiales son iguales");
+            } else {
 
-        // default:
-        // break;
-        // }
+                System.out.println("los materiales son diferentes");
+                Timer timer = new Timer();
+                TimerTask task = new TimerTask() {
 
+                    @Override
+                    public void run() {
+                        rotation11(((Box) event.getSource()));
+                        rotation11(boxAux);
+                    }
+                    
+                };
+                timer.schedule(task, 2000);
+
+
+
+            }
+
+            // m2 = ((Box) event.getSource()).getMaterial();
+            // compareMaterial(m1, m2);
+            // rotation1(((Box) event.getSource()), false);
+
+            // if (boxAux.getMaterial().equals(((Box) event.getSource()).getMaterial())) {
+            // System.out.println("los materiales son iguales");
+            // boxAux.setDisable(true);
+            // ((Box) event.getSource()).setDisable(true);
+            // boxAux = null;
+            // updatePuntosPlayer(puntosp + 1);
+            // } else {
+            // rotation1(boxAux, true);
+            // rotation1(((Box) event.getSource()), true);
+            // try {
+            // Thread.sleep(2000);
+            // } catch (InterruptedException e) {
+            // e.printStackTrace();
+            // }
+
+            // boxAux = null;
+
+            // System.out.println("los materiales son diferentes");
+            // }
+        }
+
+    }
+
+    public boolean compareMaterial(Box box1, Box box2) {
+        Material m1 = box1.getMaterial();
+        Material m2 = box2.getMaterial();
+
+        // materialDefaul = false;
+        // rotation1(box2);
+
+        if (m1.equals(m2)) {
+            box1.setDisable(true);
+            box2.setDisable(true);
+        } else {
+
+            materialDefaul = true;
+            rotation11(box1);
+
+            rotation11(box2);
+        }
+        return m1.equals(m2);
     }
 
     public void rotation1(Box box) {
@@ -190,7 +237,23 @@ public class GameController implements Initializable {
         rotate.setAxis(Rotate.Y_AXIS);
         rotate.setByAngle(90);
         rotate.setOnFinished(evento -> {
+
             setMaterilBox(box);
+            rotation2(box);
+
+        });
+        rotate.play();
+    }
+
+    public void rotation11(Box box) {
+        RotateTransition rotate = new RotateTransition();
+        rotate.setDuration(Duration.seconds(duration));
+        rotate.setNode(box);
+        rotate.setAxis(Rotate.Y_AXIS);
+        rotate.setByAngle(90);
+        rotate.setOnFinished(evento -> {
+
+            setDefaulMaterial(box);
             rotation2(box);
 
         });
@@ -200,82 +263,66 @@ public class GameController implements Initializable {
     public void setMaterilBox(Box box) {
         switch (box.getId()) {
             case "myBox":
-                System.out.println("Esto es dentro del case -myBox-");
                 box.setMaterial(listMaterials.get(0));
                 break;
 
             case "myBox1":
-                System.out.println("Esto es dentro del case -myBox1-");
                 box.setMaterial(listMaterials.get(1));
                 break;
 
             case "myBox2":
-                System.out.println("Esto es dentro del case -myBox2-");
                 box.setMaterial(listMaterials.get(2));
                 break;
 
             case "myBox3":
-                System.out.println("Esto es dentro del case -myBox3-");
                 box.setMaterial(listMaterials.get(3));
                 break;
 
             case "myBox4":
-                System.out.println("Esto es dentro del case -myBox4-");
                 box.setMaterial(listMaterials.get(4));
                 break;
 
             case "myBox5":
-                System.out.println("Esto es dentro del case -myBox5-");
                 box.setMaterial(listMaterials.get(5));
                 break;
 
             case "myBox6":
-                System.out.println("Esto es dentro del case -myBox6-");
                 box.setMaterial(listMaterials.get(6));
                 break;
 
             case "myBox7":
-                System.out.println("Esto es dentro del case -myBox7-");
                 box.setMaterial(listMaterials.get(7));
                 break;
 
             case "myBox8":
-                System.out.println("Esto es dentro del case -myBox-8");
                 box.setMaterial(listMaterials.get(8));
                 break;
 
             case "myBox9":
-                System.out.println("Esto es dentro del case -myBox9-");
                 box.setMaterial(listMaterials.get(9));
                 break;
 
             case "myBox10":
-                System.out.println("Esto es dentro del case -myBox10-");
                 box.setMaterial(listMaterials.get(10));
                 break;
 
             case "myBox11":
-                System.out.println("Esto es dentro del case -myBox11-");
                 box.setMaterial(listMaterials.get(11));
                 break;
 
             case "myBox12":
-                System.out.println("Esto es dentro del case -myBox12-");
                 box.setMaterial(listMaterials.get(12));
                 break;
 
             case "myBox13":
-                System.out.println("Esto es dentro del case -myBox13-");
                 box.setMaterial(listMaterials.get(13));
                 break;
 
             case "myBox14":
-                System.out.println("Esto es dentro del case -myBox14-");
                 box.setMaterial(listMaterials.get(14));
                 break;
 
             case "myBox15":
-                System.out.println("Esto es dentro del case -myBox15-");
                 box.setMaterial(listMaterials.get(15));
                 break;
 
@@ -305,6 +352,15 @@ public class GameController implements Initializable {
         cargarImgs();
         cargarMateriales();
         setDefaulMaterial();
+
+    }
+
+    public void setDefaulMaterial(Box box) {
+
+        PhongMaterial material = new PhongMaterial();
+        Image img = new Image(getClass().getResource("imgGame/pregunta.png").toExternalForm());
+        material.setDiffuseMap(img);
+        box.setMaterial(material);
 
     }
 
@@ -341,6 +397,7 @@ public class GameController implements Initializable {
                 PhongMaterial material = new PhongMaterial();
                 material.setDiffuseMap(image);
                 listMaterials.add(material);
+                listMaterials.add(material);
             }
 
             Collections.shuffle(listMaterials);
@@ -359,7 +416,6 @@ public class GameController implements Initializable {
                         (dir, name) -> name.toLowerCase().endsWith(".jpg") || name.toLowerCase().endsWith(".png"));
                 System.out.println("la cantidad de imagenens dentro de la carpeta es " + imagenes.length);
                 for (File imagen : imagenes) {
-                    listaImages.add(new Image(imagen.toURI().toString()));
                     listaImages.add(new Image(imagen.toURI().toString()));
                 }
             }
@@ -421,7 +477,7 @@ public class GameController implements Initializable {
 
     public void updatePuntosPlayer(int puntos) {
         puntosp = puntos;
-        puntosPlayer.setText(Integer.toString(puntos));
+        puntosPlayer.setText(Integer.toString(puntosp));
     }
 
     public void updatePuntosinvitado(int puntosInvitado) {
