@@ -20,7 +20,6 @@ import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.print.Collation;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -29,8 +28,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Material;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
-import javafx.scene.shape.Shape;
-import javafx.scene.shape.Shape3D;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
@@ -50,8 +47,7 @@ public class GameController implements Initializable {
     private static List<Image> listaImages = new ArrayList<>();
     private static List<PhongMaterial> listMaterials = new ArrayList<>();
     private Box boxAux;
-    private Material m1;
-    private Material m2;
+    private Box boxAux2;
 
     @FXML
     private Box myBox;
@@ -154,80 +150,46 @@ public class GameController implements Initializable {
 
         } else {
 
-            // setMaterilBox(((Box) event.getSource()));
+            boxAux2 = ((Box) event.getSource());
 
-            rotation1(((Box) event.getSource()));
+            rotation1(boxAux2);
 
-            m1 = boxAux.getMaterial();
-            m2 = ((Box) event.getSource()).getMaterial();
+            System.out.println("");
 
-            if (m1.equals(m2)) {
+            Timer timer = new Timer();
+            TimerTask task = new TimerTask() {
 
-                System.out.println("los materiales son iguales");
-            } else {
+                @Override
+                public void run() {
 
-                System.out.println("los materiales son diferentes");
-                Timer timer = new Timer();
-                TimerTask task = new TimerTask() {
+                    Material m1 = boxAux.getMaterial();
+                    Material m2 = boxAux2.getMaterial();
 
-                    @Override
-                    public void run() {
-                        rotation11(((Box) event.getSource()));
+                    if (m1.equals(m2)) {
+
+                        System.out.println("los materiales son iguales");
+                        boxAux2.setDisable(true);
+                        boxAux.setDisable(true);
+                        
+                        boxAux = null;
+                    } else {
+
+                        rotation11(boxAux2);
                         rotation11(boxAux);
+                        boxAux.setDisable(false);
+                        boxAux2.setDisable(false);
+                        boxAux = null;
+                        System.out.println("los materiales son diferentes");
+
                     }
-                    
-                };
-                timer.schedule(task, 2000);
 
+                }
 
+            };
+            timer.schedule(task, 2000);
 
-            }
-
-            // m2 = ((Box) event.getSource()).getMaterial();
-            // compareMaterial(m1, m2);
-            // rotation1(((Box) event.getSource()), false);
-
-            // if (boxAux.getMaterial().equals(((Box) event.getSource()).getMaterial())) {
-            // System.out.println("los materiales son iguales");
-            // boxAux.setDisable(true);
-            // ((Box) event.getSource()).setDisable(true);
-            // boxAux = null;
-            // updatePuntosPlayer(puntosp + 1);
-            // } else {
-            // rotation1(boxAux, true);
-            // rotation1(((Box) event.getSource()), true);
-            // try {
-            // Thread.sleep(2000);
-            // } catch (InterruptedException e) {
-            // e.printStackTrace();
-            // }
-
-            // boxAux = null;
-
-            // System.out.println("los materiales son diferentes");
-            // }
         }
 
-    }
-
-    public boolean compareMaterial(Box box1, Box box2) {
-        Material m1 = box1.getMaterial();
-        Material m2 = box2.getMaterial();
-
-        // materialDefaul = false;
-        // rotation1(box2);
-
-        if (m1.equals(m2)) {
-            box1.setDisable(true);
-            box2.setDisable(true);
-        } else {
-
-            materialDefaul = true;
-            rotation11(box1);
-
-            rotation11(box2);
-        }
-        return m1.equals(m2);
     }
 
     public void rotation1(Box box) {
@@ -258,6 +220,18 @@ public class GameController implements Initializable {
 
         });
         rotate.play();
+
+    }
+
+    public void rotation2(Box box) {
+
+        RotateTransition rotate = new RotateTransition();
+        rotate.setDuration(Duration.seconds(duration));
+        rotate.setNode(box);
+        rotate.setAxis(Rotate.Y_AXIS);
+        rotate.setByAngle(90);
+        rotate.play();
+
     }
 
     public void setMaterilBox(Box box) {
@@ -329,17 +303,6 @@ public class GameController implements Initializable {
             default:
                 break;
         }
-
-    }
-
-    public void rotation2(Box box) {
-
-        RotateTransition rotate = new RotateTransition();
-        rotate.setDuration(Duration.seconds(duration));
-        rotate.setNode(box);
-        rotate.setAxis(Rotate.Y_AXIS);
-        rotate.setByAngle(90);
-        rotate.play();
 
     }
 
