@@ -9,10 +9,10 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
@@ -25,23 +25,26 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.util.Duration;
 import com.jfoenix.controls.JFXButton;
 import com.mycompany.mavenproject8.Oters.Payer;
-import com.mycompany.mavenproject8.lista.Nodo;
-
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import org.kordamp.bootstrapfx.scene.layout.Panel;
 
-public class SecondaryController {
+public class SecondaryController implements Initializable {
 
     double x;
     double y;
+    private fxmlLoader loader = new fxmlLoader();
+    private Parent tabla;
+    private Parent reguisterAdmin;
+    private Parent game;
+
     private static Payer payer = PrimaryController.getPayerselected();
 
     public static Payer getPayer() {
         return payer;
     }
 
+    @FXML
+    private JFXButton btnBckUp;
     @FXML
     private JFXButton eliminar;
     @FXML
@@ -66,22 +69,25 @@ public class SecondaryController {
 
     @FXML
     private BorderPane brPanel;
-    
+
+    @FXML
+    private JFXButton btnSalir;
+
+    @FXML
+    private AnchorPane menu;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        tabla = loader.getParent("tabla");
+        reguisterAdmin = loader.getParent("ReguisterAdmin");
+        game = loader.getParent("game");
+    }
 
     @FXML
     void cerrar(MouseEvent event) {
         System.exit(0);
     }
-    
-
-    public void initialize(URL location, ResourceBundle resources) {
-        
-    }
-
-    @FXML
-    private JFXButton btnSalir;
-    @FXML
-    private AnchorPane menu;
 
     @FXML
     void menuEvent(MouseEvent event) {
@@ -101,24 +107,9 @@ public class SecondaryController {
     }
 
     @FXML
-    void salir(MouseEvent event) throws IOException {
-
-        /*
-         * if(loguinController.con.conected){
-         * loguinController.con.desconeccion();
-         * }
-         */
-        // ParejasApplication.setRoot("loguin");
-    }
-
-    @FXML
     void setGame(ActionEvent event) {
-        fxmlLoader loader = new fxmlLoader();
-        Parent view = loader.getParent("game");
         System.out.println("set game panel");
-        // view.setScaleX(.5);
-        // view.setScaleY(.5);
-        brPanel.setCenter(view);
+        brPanel.setCenter(game);
 
     }
 
@@ -128,42 +119,45 @@ public class SecondaryController {
     }
 
     @FXML
-    void getTabla(ActionEvent event) {
-        System.out.println("obteniendo la tabla");
-    }
-
-    @FXML
     void getDashboart(ActionEvent event) {
-
-        fxmlLoader loader = new fxmlLoader();
-        Parent view = loader.getParent("tabla");
         System.out.println("set tabla panel");
-        // view.setScaleX(.5);
-        // view.setScaleY(.5);
-        brPanel.setCenter(view);
+        brPanel.setCenter(tabla);
     }
 
     @FXML
     void setAgregarForm(ActionEvent event) {
-        fxmlLoader loader = new fxmlLoader();
-        Parent view = loader.getParent("ReguisterAdmin");
         System.out.println("set ReguisterAdmin panel");
-        // view.setScaleX(.5);
-        // view.setScaleY(.5);
-        brPanel.setCenter(view);
+        brPanel.setCenter(reguisterAdmin);
     }
 
     @FXML
-    void backUo(ActionEvent event) throws IOException {
+    void backUp(ActionEvent event) throws IOException {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Guardar en");
         fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Archivo de Texto", "*.txt"),
                 new ExtensionFilter("Todos los Archivos", "*.*"));
-        fileChooser.setInitialFileName("julio");
-        File archivoGuardado = fileChooser.showSaveDialog(null);
+        fileChooser.setInitialFileName(payer.getUsuario());
+        File archivoGuardado = fileChooser.showSaveDialog(btnBckUp.getScene().getWindow());
+
+        String usuario = payer.getUsuario();
+        String contrasena = payer.getContrasena();
+        String pregunta = payer.getPregunta();
+        String respuesta = payer.getRespuesta();
+        String tiempoJuego = payer.getTiempoGuego().toString();
+        int puntaje = payer.getPuntaje();
+        int turnos = payer.getTurnos();
+        int admin = payer.isAdmin();
+        
         FileWriter writer = new FileWriter(archivoGuardado);
-        writer.write("hola mundo");
+        writer.write(usuario+";"+
+                    contrasena+";"+
+                    pregunta+";"+
+                    respuesta+";"+
+                    tiempoJuego+";"+
+                    puntaje+";"+
+                    turnos+";"+
+                    admin);
         writer.close();
 
     }

@@ -1,6 +1,5 @@
 package com.mycompany.mavenproject8;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;

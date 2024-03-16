@@ -107,7 +107,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnBckUp" onAction="#backUo" prefHeight="38.0" prefWidth="176.0" text="BackUp" textFill="WHITE">
+                        <JFXButton fx:id="btnBckUp" onAction="#backUp" prefHeight="38.0" prefWidth="176.0" text="BackUp" textFill="WHITE">
                            <font>
                               <Font name="Roboto Bold" size="15.0" />
                            </font>

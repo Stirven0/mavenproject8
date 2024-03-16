@@ -17,6 +17,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javafx.animation.RotateTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -152,44 +153,48 @@ public class GameController implements Initializable {
 
             boxAux2 = ((Box) event.getSource());
 
-            rotation1(boxAux2);
-
-            System.out.println("");
-
-            Timer timer = new Timer();
-            TimerTask task = new TimerTask() {
-
-                @Override
-                public void run() {
-
-                    Material m1 = boxAux.getMaterial();
-                    Material m2 = boxAux2.getMaterial();
-
-                    if (m1.equals(m2)) {
-
-                        System.out.println("los materiales son iguales");
-                        boxAux2.setDisable(true);
-                        boxAux.setDisable(true);
-                        
-                        boxAux = null;
-                    } else {
-
-                        rotation11(boxAux2);
-                        rotation11(boxAux);
-                        boxAux.setDisable(false);
-                        boxAux2.setDisable(false);
-                        boxAux = null;
-                        System.out.println("los materiales son diferentes");
-
-                    }
-
-                }
-
-            };
-            timer.schedule(task, 2000);
+            comparador();
 
         }
 
+    }
+
+    private void comparador() {
+        rotation1(boxAux2);
+
+
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+
+            @Override
+            public void run() {
+
+                Material m1 = boxAux.getMaterial();
+                Material m2 = boxAux2.getMaterial();
+
+                if (m1.equals(m2)) {
+
+                    System.out.println("los materiales son iguales");
+                    updatePuntosPlayer(puntosp+1);
+                    boxAux2.setDisable(true);
+                    boxAux.setDisable(true);
+                    
+                    boxAux = null;
+                } else {
+
+                    rotation11(boxAux2);
+                    rotation11(boxAux);
+                    boxAux.setDisable(false);
+                    boxAux2.setDisable(false);
+                    boxAux = null;
+                    System.out.println("los materiales son diferentes");
+
+                }
+
+            }
+
+        };
+        timer.schedule(task, 2000);
     }
 
     public void rotation1(Box box) {
@@ -310,7 +315,7 @@ public class GameController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         payer = PrimaryController.getPayerselected();
         namePlayer.setText(payer.getUsuario());
-        updatePuntosPlayer(0);
+        updatePuntosPlayer(1);
         updatePuntosinvitado(0);
         cargarImgs();
         cargarMateriales();
@@ -440,10 +445,11 @@ public class GameController implements Initializable {
 
     public void updatePuntosPlayer(int puntos) {
         puntosp = puntos;
-        puntosPlayer.setText(Integer.toString(puntosp));
+        String str = Integer.toString(puntos);
+        Platform.runLater(() -> puntosPlayer.setText(str));
     }
 
-    public void updatePuntosinvitado(int puntosInvitado) {
+     public void updatePuntosinvitado(int puntosInvitado) {
         this.puntosInvitado.setText(Integer.toString(puntosInvitado));
         puntosinv = puntosInvitado;
     }

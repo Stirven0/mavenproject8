@@ -2,29 +2,26 @@ package com.mycompany.mavenproject8;
 
 import java.io.IOException;
 import java.net.URL;
-import java.security.spec.PSSParameterSpec;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ResourceBundle;
-
+import java.util.Timer;
+import java.util.TimerTask;
 import com.jfoenix.controls.JFXComboBox;
 import com.mycompany.mavenproject8.Oters.Payer;
 import com.mycompany.mavenproject8.lista.Lista;
-import com.mysql.cj.xdevapi.PreparableStatement;
-
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.Bloom;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
@@ -48,6 +45,7 @@ public class PrimaryController implements Initializable {
     private Alert alerta;
     private static Conection con;
     private static Connection cn;
+
     public static Connection getCn() {
         return cn;
     }
@@ -88,24 +86,39 @@ public class PrimaryController implements Initializable {
     // Accioness De Los Componentes
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        con = new Conection();
-        playerList = new Lista();
-        if (!con.conected) {
-            cn = con.conexion();
-            updateList();
-        }
+        try {
+            con = new Conection();
+            playerList = new Lista();
+            if (!con.conected) {
+                cn = con.conexion();
+                updateList();
+            }
 
-        if (con.conected) {
-            System.out.println("Conneccion con el sevidor activa");
-        } else {
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Mensage de Error");
-            alerta.setHeaderText(null);
-            alerta.setContentText("No fue posible conectar con la base de datos \nSe prosede a trabajar en local");
-            alerta.showAndWait();
-        }
+            if (con.conected) {
+                System.out.println("Conneccion con el sevidor activa");
+            } else {
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Mensage de Error");
+                alerta.setHeaderText(null);
+                alerta.setContentText("No fue posible conectar con la base de datos \nSe prosede a trabajar en local");
+                alerta.showAndWait();
+            }
 
-        regPregunta.getItems().addAll(listaPreguntas);
+            regPregunta.getItems().addAll(listaPreguntas);
+        } catch (Exception e) {
+            System.out.println(e);
+            Timer timer = new Timer();
+            TimerTask task = new TimerTask() {
+
+                @Override
+                public void run() {
+                    moverPanel();
+                    panelBtnCrear.setDisable(true);
+                }
+
+            };
+            timer.schedule(task, 1000);
+        }
 
         ////////////////////////////
 
@@ -140,22 +153,27 @@ public class PrimaryController implements Initializable {
 
     @FXML
     void mover() throws IOException {
+        moverPanel();
+    }
+
+    private void moverPanel() {
         TranslateTransition slider = new TranslateTransition();
+
         if (panelCrearCuenta.getTranslateX() == 0) {
             slider.setNode(panelCrearCuenta);
             slider.setToX(320);
             slider.setDuration(Duration.seconds(.5));
             slider.play();
-            crearCuentaText.setText("Tienes una cuenta?");
-            panelBtnCrear.setText("Iniciar Secion");
+            Platform.runLater(() -> crearCuentaText.setText("Tienes una cuenta?"));
+            Platform.runLater(() -> panelBtnCrear.setText("Iniciar Secion"));
         }
         if (panelCrearCuenta.getTranslateX() == 320) {
             slider.setNode(panelCrearCuenta);
             slider.setToX(0);
             slider.setDuration(Duration.seconds(.5));
             slider.play();
-            crearCuentaText.setText("No tienes una cuenta");
-            panelBtnCrear.setText("Crear Cuenta");
+            Platform.runLater(() ->crearCuentaText.setText("No tienes una cuenta"));
+            Platform.runLater(() ->panelBtnCrear.setText("Crear Cuenta"));
         }
 
         limpiarFormularios();
@@ -174,7 +192,8 @@ public class PrimaryController implements Initializable {
         } else {
             while ((j++) < playerList.zise()) {
                 Payer payeraux = playerList.get(j - 1);
-                if (payeraux.getUsuario().equals(iniNombreUsuario.getText()) && payeraux.getContrasena().equals(iniContrasena.getText())) {
+                if (payeraux.getUsuario().equals(iniNombreUsuario.getText())
+                        && payeraux.getContrasena().equals(iniContrasena.getText())) {
                     payerselected = payeraux;
                     System.out.println("user is logued");
                     limpiarFormularios();
@@ -184,7 +203,7 @@ public class PrimaryController implements Initializable {
             }
 
         }
-        
+
         if (j > playerList.zise()) {
             alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Mensage de Error");
@@ -197,31 +216,10 @@ public class PrimaryController implements Initializable {
 
     @FXML
     void regBtn() throws IOException {
-        // try {
-        // ResultSet rows = this.rows;
-        // while (rows.next()) {
-        // String usuario = rows.getString("usuario");
 
-        // if (usuario.equals(regNombreUsuario.getText())) {
-        // Alert alerta = new Alert(Alert.AlertType.ERROR);
-        // alerta.setTitle("Mensage de Error");
-        // alerta.setHeaderText(null);
-        // alerta.setContentText("Usuario ya Existente");
-        // alerta.showAndWait();
-        // break;
-        // } else {
-
-        // System.out.println("user user reguisted");
-        // App.setRoot("secondary");
-        // }
-        // }
-        // } catch (SQLException e) {
-        // // TODO Auto-generated catch block
-        // System.out.println("Error: " + e);
-        // }
-
+        
         int j = 0;
-        while ((j++) < playerList.zise()) {
+        while ((j++) < playerList.zise() ) {
 
             if (playerList.get(j - 1).getUsuario().equals(regNombreUsuario.getText())) {
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
@@ -251,10 +249,7 @@ public class PrimaryController implements Initializable {
     public static void eviarPayer(Payer newPayer, boolean admin) {
         if (admin) {
             newPayer.setAdmin(1);
-        } else {
-
-            newPayer.setAdmin(0);
-        }
+        } 
         try {
             PreparedStatement pStatement = cn.prepareStatement(
                     "INSERT INTO data (usuario,contrasena,pregunta,respuesta,tiempojugado,puntaje,turnos,admin) VALUES (?,?,?,?,?,?,?,?)");
@@ -267,9 +262,16 @@ public class PrimaryController implements Initializable {
             pStatement.setString(7, Integer.toString(newPayer.getTurnos()));
             pStatement.setString(8, Integer.toString(newPayer.isAdmin()));
             pStatement.executeUpdate();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            System.out.println("Player no guardado en el server"+e);
+            
+            System.out.println("user user reguisted");
+        } catch (Exception e) {
+            payerselected = newPayer;
+            System.out.println("Player no guardado en el server " + e);
+            try {
+                App.setRoot("secondary");
+            } catch (IOException e1) {
+                System.out.println(e);
+            }
 
         }
     }

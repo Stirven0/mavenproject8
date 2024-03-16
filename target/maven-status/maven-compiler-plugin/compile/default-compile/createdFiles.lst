@@ -1,4 +1,6 @@
 com\mycompany\mavenproject8\ReguisterAdminController.class
+com\mycompany\mavenproject8\TablaController.class
+com\mycompany\mavenproject8\GameController$1.class
 com\mycompany\mavenproject8\ItemGameController.class
 com\mycompany\mavenproject8\lista\Nodo.class
 com\mycompany\mavenproject8\SecondaryController.class
@@ -10,4 +12,3 @@ com\mycompany\mavenproject8\GameController.class
 com\mycompany\mavenproject8\fxmlLoader.class
 com\mycompany\mavenproject8\PrimaryController.class
 com\mycompany\mavenproject8\Oters\Payer.class
-com\mycompany\mavenproject8\TablaController.class
