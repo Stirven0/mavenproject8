@@ -82,6 +82,9 @@ public class SecondaryController implements Initializable {
         tabla = loader.getParent("tabla");
         reguisterAdmin = loader.getParent("ReguisterAdmin");
         game = loader.getParent("game");
+
+        
+        brPanel.setCenter(tabla);
     }
 
     @FXML
