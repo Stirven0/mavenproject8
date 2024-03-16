@@ -26,6 +26,7 @@ import javafx.util.Duration;
 import com.jfoenix.controls.JFXButton;
 import com.mycompany.mavenproject8.Oters.Payer;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 
 public class SecondaryController implements Initializable {
@@ -43,6 +44,7 @@ public class SecondaryController implements Initializable {
         return payer;
     }
 
+    
     @FXML
     private JFXButton btnBckUp;
     @FXML

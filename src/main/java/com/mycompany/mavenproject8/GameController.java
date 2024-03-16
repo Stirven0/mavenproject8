@@ -49,6 +49,8 @@ public class GameController implements Initializable {
     private static List<PhongMaterial> listMaterials = new ArrayList<>();
     private Box boxAux;
     private Box boxAux2;
+    private double durationAnimation = 0.2;
+    private int boxCouter;
 
     @FXML
     private Box myBox;
@@ -98,11 +100,12 @@ public class GameController implements Initializable {
     @FXML
     private Box myBox9;
 
-    private double duration = .5 / 2;
     @FXML
     private Label puntosInvitado;
+
     @FXML
     private Label nameInvitado;
+
     @FXML
     private Label namePlayer;
 
@@ -114,6 +117,7 @@ public class GameController implements Initializable {
 
     @FXML
     private Group game;
+
     @FXML
     private Pane singelPlayyer;
 
@@ -128,41 +132,45 @@ public class GameController implements Initializable {
 
     @FXML
     private Label two;
+
     @FXML
     private JFXButton btnBack;
 
-    private int puntosp;
-    private int puntosinv;
-    private boolean materialDefaul;
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        boxCouter = 0;
+        payer = PrimaryController.getPayerselected();
+        namePlayer.setText(payer.getUsuario());
+        updatePuntosPlayer(0);
+        updatePuntosinvitado(0);
+        cargarImgs();
+        cargarMateriales();
+        setDefaulMaterial();
 
-    @FXML
-    void salir_del_panel(ActionEvent event) {
-        System.out.println("oter panel");
     }
 
-    @FXML
-    protected void rotar(MouseEvent event) {
-
-        if (boxAux == null) {
-            boxAux = ((Box) event.getSource());
-            boxAux.setDisable(true);
-            materialDefaul = false;
-            rotation1(((Box) event.getSource()));
-
-        } else {
-
-            boxAux2 = ((Box) event.getSource());
-
-            comparador();
-
-        }
-
+    public void boxDisable(boolean Disable) {
+        myBox.setDisable(Disable);
+        myBox1.setDisable(Disable);
+        myBox2.setDisable(Disable);
+        myBox3.setDisable(Disable);
+        myBox4.setDisable(Disable);
+        myBox5.setDisable(Disable);
+        myBox6.setDisable(Disable);
+        myBox7.setDisable(Disable);
+        myBox8.setDisable(Disable);
+        myBox9.setDisable(Disable);
+        myBox10.setDisable(Disable);
+        myBox11.setDisable(Disable);
+        myBox12.setDisable(Disable);
+        myBox13.setDisable(Disable);
+        myBox14.setDisable(Disable);
+        myBox15.setDisable(Disable);
     }
 
     private void comparador() {
-        rotation1(boxAux2);
 
-
+        // rotation1(boxAux2);
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
 
@@ -173,12 +181,11 @@ public class GameController implements Initializable {
                 Material m2 = boxAux2.getMaterial();
 
                 if (m1.equals(m2)) {
-
                     System.out.println("los materiales son iguales");
-                    updatePuntosPlayer(puntosp+1);
+                    updatePuntosPlayer(payer.getPuntaje() + 1);
                     boxAux2.setDisable(true);
                     boxAux.setDisable(true);
-                    
+
                     boxAux = null;
                 } else {
 
@@ -190,16 +197,18 @@ public class GameController implements Initializable {
                     System.out.println("los materiales son diferentes");
 
                 }
+                boxCouter=0;
 
             }
 
         };
-        timer.schedule(task, 2000);
+        timer.schedule(task, 1000);
     }
 
     public void rotation1(Box box) {
+        boxDisable(true);
         RotateTransition rotate = new RotateTransition();
-        rotate.setDuration(Duration.seconds(duration));
+        rotate.setDuration(Duration.seconds(durationAnimation));
         rotate.setNode(box);
         rotate.setAxis(Rotate.Y_AXIS);
         rotate.setByAngle(90);
@@ -213,8 +222,9 @@ public class GameController implements Initializable {
     }
 
     public void rotation11(Box box) {
+        boxDisable(true);
         RotateTransition rotate = new RotateTransition();
-        rotate.setDuration(Duration.seconds(duration));
+        rotate.setDuration(Duration.seconds(durationAnimation));
         rotate.setNode(box);
         rotate.setAxis(Rotate.Y_AXIS);
         rotate.setByAngle(90);
@@ -231,10 +241,15 @@ public class GameController implements Initializable {
     public void rotation2(Box box) {
 
         RotateTransition rotate = new RotateTransition();
-        rotate.setDuration(Duration.seconds(duration));
+        rotate.setDuration(Duration.seconds(durationAnimation));
         rotate.setNode(box);
         rotate.setAxis(Rotate.Y_AXIS);
         rotate.setByAngle(90);
+        rotate.setOnFinished(evento -> {
+
+            boxDisable(false);
+
+        });
         rotate.play();
 
     }
@@ -311,18 +326,6 @@ public class GameController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        payer = PrimaryController.getPayerselected();
-        namePlayer.setText(payer.getUsuario());
-        updatePuntosPlayer(1);
-        updatePuntosinvitado(0);
-        cargarImgs();
-        cargarMateriales();
-        setDefaulMaterial();
-
-    }
-
     public void setDefaulMaterial(Box box) {
 
         PhongMaterial material = new PhongMaterial();
@@ -392,6 +395,20 @@ public class GameController implements Initializable {
         }
     }
 
+    public void showGame() {
+        selectedPlayers.setVisible(false);
+    }
+
+    public void updatePuntosPlayer(int puntos) {
+        payer.setPuntaje(puntos);
+        String str = Integer.toString(puntos);
+        Platform.runLater(() -> puntosPlayer.setText(str));
+    }
+
+    public void updatePuntosinvitado(int puntosInvitado) {
+        this.puntosInvitado.setText(Integer.toString(puntosInvitado));
+    }
+
     @FXML
     void singelPlayer(MouseEvent event) {
         pnelIN.setVisible(false);
@@ -439,19 +456,33 @@ public class GameController implements Initializable {
         showGame();
     }
 
-    public void showGame() {
-        selectedPlayers.setVisible(false);
+    @FXML
+    void salir_del_panel(ActionEvent event) {
+        System.out.println("oter panel");
     }
 
-    public void updatePuntosPlayer(int puntos) {
-        puntosp = puntos;
-        String str = Integer.toString(puntos);
-        Platform.runLater(() -> puntosPlayer.setText(str));
-    }
+    @FXML
+    protected void rotar(MouseEvent event) {
 
-     public void updatePuntosinvitado(int puntosInvitado) {
-        this.puntosInvitado.setText(Integer.toString(puntosInvitado));
-        puntosinv = puntosInvitado;
+        if (boxCouter < 2) {
+
+            if (boxAux == null) {
+                boxAux = ((Box) event.getSource());
+                boxAux.setDisable(true);
+                rotation1(((Box) event.getSource()));
+                boxCouter = boxCouter + 1;
+
+            } else {
+
+                boxCouter = boxCouter + 1;
+                boxAux2 = ((Box) event.getSource());
+                rotation1(boxAux2);
+
+                comparador();
+
+            }
+        }
+
     }
 
 }

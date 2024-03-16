@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -19,16 +20,17 @@
                <children>
                   <AnchorPane fx:id="panelSuperior" onMouseDragged="#mouseDrage" onMousePressed="#mousePresed" prefHeight="25.0" style="-fx-background-color: #032d4d;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ImageView fx:id="cerrar" fitHeight="15.0" fitWidth="15.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
-                           <image>
-                              <Image url="@../../../Imagenes/eliminar.png" />
-                           </image>
-                        </ImageView>
                         <ImageView fitHeight="15.0" fitWidth="15.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0">
                            <image>
                               <Image url="@../../../title.png" />
                            </image>
                         </ImageView>
+                        <Pane layoutX="260.0" prefHeight="25.0" prefWidth="25.0" />
+                        <JFXButton fx:id="cerar3" alignment="CENTER" contentDisplay="CENTER" layoutX="285.0" onMouseClicked="#cerrar" prefHeight="25.0" prefWidth="43.0" stylesheets="@botonExite.css" text="✕" textAlignment="CENTER" AnchorPane.rightAnchor="-9.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
                      </children>
                      <padding>
                         <Insets left="8.0" right="8.0" />

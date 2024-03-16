@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
@@ -52,8 +53,8 @@ public class PrimaryController implements Initializable {
 
     // static Conection con = new Conection();
     // static Connection cn = con.conexion();
-    private String[] listaPreguntas = { "Nombre de la Primera Mascota?", "Cual es su Comida Favorita?",
-            "Marca del Telefono Anterior?" };
+    private String[] listaPreguntas = {"Nombre de la Primera Mascota?", "Cual es su Comida Favorita?",
+        "Marca del Telefono Anterior?"};
 
     // Conponentes del FXML
     @FXML
@@ -86,6 +87,7 @@ public class PrimaryController implements Initializable {
     // Accioness De Los Componentes
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        regPregunta.getItems().addAll(listaPreguntas);
         try {
             con = new Conection();
             playerList = new Lista();
@@ -104,7 +106,6 @@ public class PrimaryController implements Initializable {
                 alerta.showAndWait();
             }
 
-            regPregunta.getItems().addAll(listaPreguntas);
         } catch (Exception e) {
             System.out.println(e);
             Timer timer = new Timer();
@@ -121,7 +122,6 @@ public class PrimaryController implements Initializable {
         }
 
         ////////////////////////////
-
     }
 
     private static void updateList() {
@@ -152,6 +152,11 @@ public class PrimaryController implements Initializable {
     }
 
     @FXML
+    void cerrar(MouseEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
     void mover() throws IOException {
         moverPanel();
     }
@@ -172,8 +177,8 @@ public class PrimaryController implements Initializable {
             slider.setToX(0);
             slider.setDuration(Duration.seconds(.5));
             slider.play();
-            Platform.runLater(() ->crearCuentaText.setText("No tienes una cuenta"));
-            Platform.runLater(() ->panelBtnCrear.setText("Crear Cuenta"));
+            Platform.runLater(() -> crearCuentaText.setText("No tienes una cuenta"));
+            Platform.runLater(() -> panelBtnCrear.setText("Crear Cuenta"));
         }
 
         limpiarFormularios();
@@ -217,9 +222,8 @@ public class PrimaryController implements Initializable {
     @FXML
     void regBtn() throws IOException {
 
-        
         int j = 0;
-        while ((j++) < playerList.zise() ) {
+        while ((j++) < playerList.zise()) {
 
             if (playerList.get(j - 1).getUsuario().equals(regNombreUsuario.getText())) {
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
@@ -239,8 +243,6 @@ public class PrimaryController implements Initializable {
 
             eviarPayer(newPayer, false);
 
-            System.out.println("user user reguisted");
-            App.setRoot("secondary");
         }
 
         limpiarFormularios();
@@ -249,7 +251,7 @@ public class PrimaryController implements Initializable {
     public static void eviarPayer(Payer newPayer, boolean admin) {
         if (admin) {
             newPayer.setAdmin(1);
-        } 
+        }
         try {
             PreparedStatement pStatement = cn.prepareStatement(
                     "INSERT INTO data (usuario,contrasena,pregunta,respuesta,tiempojugado,puntaje,turnos,admin) VALUES (?,?,?,?,?,?,?,?)");
@@ -262,13 +264,15 @@ public class PrimaryController implements Initializable {
             pStatement.setString(7, Integer.toString(newPayer.getTurnos()));
             pStatement.setString(8, Integer.toString(newPayer.isAdmin()));
             pStatement.executeUpdate();
-            
+
             System.out.println("user user reguisted");
+            App.setRoot("gameToRegister");
+
         } catch (Exception e) {
             payerselected = newPayer;
             System.out.println("Player no guardado en el server " + e);
             try {
-                App.setRoot("secondary");
+                App.setRoot("gameToRegister");
             } catch (IOException e1) {
                 System.out.println(e);
             }
@@ -284,9 +288,7 @@ public class PrimaryController implements Initializable {
         // try {
         // statement = cn.createStatement();
         // rows = statement.executeQuery("SELECT * FROM data");
-
         // while (rows.next()) {
-
         // }
         // } catch (SQLException e) {
         // // TODO Auto-generated catch block
@@ -299,13 +301,11 @@ public class PrimaryController implements Initializable {
         // while (rows.next()) {
         // String usuario = rows.getString("usuario");
         // String contrasena = rows.getString("contrasena");
-
         // if (usuario.equals(iniNombreUsuario.getText()) &&
         // contrasena.equals(iniContrasena.getText())) {
         // System.out.println("user and pass ok");
         // App.setRoot("secondary");
         // } else {
-
         // Alert alerta = new Alert(Alert.AlertType.ERROR);
         // alerta.setTitle("Mensage de Error");
         // alerta.setHeaderText(null);
@@ -317,7 +317,6 @@ public class PrimaryController implements Initializable {
         // // TODO Auto-generated catch block
         // System.out.println("Error: " + e);
         // }
-
         limpiarFormularios();
     }
 

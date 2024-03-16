@@ -1,0 +1,22 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 16 mar 2024, 11:14:54
+    Author     : julio
+*/
+
+.button {
+    /*    -fx-max-height: MAX_VALUE;*/
+    -fx-background-radius: 0;
+    -fx-padding: 0px;
+    -fx-background-color: transparent;
+    -fx-text-fill: d0dce7; /* O el color que prefieras para el texto */
+}
+
+.button:hover {
+    -fx-background-color: red;
+    -fx-transition: background-color 0.5s ease;
+    -fx-text-fill: white;
+}

@@ -19,6 +19,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        // src\main\resources\com\mycompany\mavenproject8\primary.fxml
         scene = new Scene(loadFXML("primary"), 640, 480);
         Image img = new Image("title.png");
         stage.setScene(scene);

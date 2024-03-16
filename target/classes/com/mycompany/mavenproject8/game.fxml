@@ -210,7 +210,7 @@
                 </AnchorPane>
             </children>
         </Group>
-        <Group fx:id="selectedPlayers" visible="false">
+        <Group fx:id="selectedPlayers">
             <children>
                 <AnchorPane prefHeight="410.0" prefWidth="464.0" style="-fx-background-color: white;">
                     <children>
