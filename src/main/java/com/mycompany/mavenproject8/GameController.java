@@ -39,9 +39,7 @@ import javafx.util.Duration;
  */
 public class GameController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    
     private static Payer payer;
     private final String defaultResour = getClass().getResource("").getPath();
     private final String carpetaImagenes = defaultResour + "imgGame/images";

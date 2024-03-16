@@ -8,7 +8,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -17,11 +19,17 @@ import javafx.scene.input.MouseEvent;
  */
 public class GameToRegisterController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    
+    private fxmlLoader loader = new fxmlLoader();
+    private Parent game;
+    
+    
+    @FXML
+    private BorderPane brPanel;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        game = loader.getParent("game");
+        brPanel.setCenter(game);
         
     }    
     @FXML
