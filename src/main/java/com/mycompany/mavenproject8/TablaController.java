@@ -7,7 +7,7 @@ package com.mycompany.mavenproject8;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.mycompany.mavenproject8.Oters.Payer;
+import com.mycompany.mavenproject8.Oters.Player;
 import com.mycompany.mavenproject8.lista.Lista;
 
 import javafx.collections.FXCollections;
@@ -27,6 +27,7 @@ import javafx.scene.input.MouseEvent;
 public class TablaController implements Initializable {
     private Lista list;
     private static int ID;
+    private static Player selectedPayer;
     public static int getID() {
         return ID;
     }
@@ -35,33 +36,33 @@ public class TablaController implements Initializable {
      */
 
     @FXML
-    private TableView<Payer> tabla;
+    private TableView<Player> tabla;
 
     @FXML
-    private TableColumn<Payer, Integer> id;
+    private TableColumn<Player, Integer> id;
 
     @FXML
-    private TableColumn<Payer, String> usuario;
+    private TableColumn<Player, String> usuario;
 
     @FXML
-    private TableColumn<Payer, Integer> partidas;
+    private TableColumn<Player, Integer> partidas;
 
     @FXML
-    private TableColumn<Payer, Integer> movimientos;
+    private TableColumn<Player, Integer> movimientos;
 
     @FXML
-    private TableColumn<Payer, Integer> admin;
+    private TableColumn<Player, Integer> admin;
 
     @FXML
-    private TableColumn<Payer, Integer> puntajeMaximo;
+    private TableColumn<Player, Integer> puntajeMaximo;
 
-    ObservableList<Payer> players;
+    ObservableList<Player> players;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         list = PrimaryController.getPlayerList();
-        System.out.println("Se creo la lisa correecta mente");
+        System.out.println("Se creo la lista correcta mente");
         players = FXCollections.observableArrayList();
 
         for (int i = 0; i < list.zise(); i++) {
@@ -79,10 +80,18 @@ public class TablaController implements Initializable {
     }
     @FXML
     void filaCeleccionada(MouseEvent event) {
-        Payer selectedPayer = tabla.getSelectionModel().getSelectedItem();
-        if (selectedPayer != null) {
-            ID = selectedPayer.getID();
+        selectedPayer = tabla.getSelectionModel().getSelectedItem();
+        if (getSelectedPayer() != null) {
+            ID = getSelectedPayer().getID();
         }
     }
+
+    /**
+     * @return the selectedPayer
+     */
+    public static Player getSelectedPayer() {
+        return selectedPayer;
+    }
+
 
 }

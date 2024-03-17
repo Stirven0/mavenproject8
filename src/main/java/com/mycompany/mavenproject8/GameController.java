@@ -5,23 +5,30 @@
 package com.mycompany.mavenproject8;
 
 import com.jfoenix.controls.JFXButton;
-import com.mycompany.mavenproject8.Oters.Payer;
+import com.mycompany.mavenproject8.Oters.Player;
 import java.io.File;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -39,8 +46,10 @@ import javafx.util.Duration;
  */
 public class GameController implements Initializable {
 
-    
-    private static Payer payer;
+    private static Player payer;
+    private static Player playerIni;
+    private static Player ;
+
     private final String defaultResour = getClass().getResource("").getPath();
     private final String carpetaImagenes = defaultResour + "imgGame/images";
     private static List<Image> listaImages = new ArrayList<>();
@@ -49,6 +58,10 @@ public class GameController implements Initializable {
     private Box boxAux2;
     private double durationAnimation = 0.2;
     private int boxCouter;
+    private int timer;
+
+    @FXML
+    private Label lbTimer;
 
     @FXML
     private Box myBox;
@@ -137,8 +150,9 @@ public class GameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         boxCouter = 0;
-        payer = PrimaryController.getPayerselected();
+        payer = PrimaryController.getPlayerselected();
         namePlayer.setText(payer.getUsuario());
+        timer = 10;
         updatePuntosPlayer(0);
         updatePuntosinvitado(0);
         cargarImgs();
@@ -195,7 +209,7 @@ public class GameController implements Initializable {
                     System.out.println("los materiales son diferentes");
 
                 }
-                boxCouter=0;
+                boxCouter = 0;
 
             }
 
@@ -393,8 +407,60 @@ public class GameController implements Initializable {
         }
     }
 
-    public void showGame() {
+    public void showGame(boolean twoPlayer) {
+
+        // lbTimer;
+        Timeline cuentaRegresiva = new Timeline();
+        cuentaRegresiva.setCycleCount(Timeline.INDEFINITE);
+        final KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                timer--;
+                lbTimer.setText(Integer.toString(timer));
+
+                if (twoPlayer) {
+
+                } else {
+
+                }
+
+                if (timer <= 0) {
+
+                    cuentaRegresiva.stop();
+
+                    initialize(null, null);
+
+                    System.out.println("se acabo el tiempo");
+
+                }
+
+            }
+
+        });
+        cuentaRegresiva.getKeyFrames().add(frame);
+        cuentaRegresiva.playFromStart();
+
         selectedPlayers.setVisible(false);
+    }
+
+    public boolean confirmación(String mensage) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación");
+        alert.setHeaderText(mensage);
+        alert.setContentText("Elige tu opción.");
+
+        ButtonType buttonTypeYes = new ButtonType("Sí", ButtonBar.ButtonData.YES);
+        ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.NO);
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeYes) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void updatePuntosPlayer(int puntos) {
@@ -404,6 +470,7 @@ public class GameController implements Initializable {
     }
 
     public void updatePuntosinvitado(int puntosInvitado) {
+
         this.puntosInvitado.setText(Integer.toString(puntosInvitado));
     }
 
@@ -446,12 +513,12 @@ public class GameController implements Initializable {
     void singelPlayyerMouseClicked(MouseEvent event) {
         nameInvitado.setVisible(false);
         puntosInvitado.setVisible(false);
-        showGame();
+        showGame(false);
     }
 
     @FXML
     void twoPlayerMouseClicked(MouseEvent event) {
-        showGame();
+        showGame(true);
     }
 
     @FXML

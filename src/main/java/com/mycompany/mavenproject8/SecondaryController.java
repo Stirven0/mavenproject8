@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -18,41 +19,43 @@ import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderImage;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.util.Duration;
 import com.jfoenix.controls.JFXButton;
-import com.mycompany.mavenproject8.Oters.Payer;
+import com.mycompany.mavenproject8.Oters.Player;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
 
 public class SecondaryController implements Initializable {
 
     double x;
     double y;
-    private fxmlLoader loader = new fxmlLoader();
+    private static fxmlLoader loader = new fxmlLoader();
     private Parent tabla;
     private Parent reguisterAdmin;
-    private Parent game;
+    private static Parent game;
 
-    private static Payer payer = PrimaryController.getPayerselected();
+    private static Player player = PrimaryController.getPlayerselected();
 
-    public static Payer getPayer() {
-        return payer;
+    public static Player getPlayer() {
+        return player;
     }
 
-    
     @FXML
-    private JFXButton btnBckUp;
+    private static JFXButton btnBckUp;
     @FXML
-    private JFXButton eliminar;
+    private static JFXButton eliminar;
     @FXML
     private AnchorPane panelSuperior;
     @FXML
-    private JFXButton btnRestore;
+    private static JFXButton btnRestore;
 
     @FXML
     private JFXButton btnAgegar;
@@ -70,7 +73,7 @@ public class SecondaryController implements Initializable {
     private ImageView cerrar;
 
     @FXML
-    private BorderPane brPanel;
+    private static BorderPane brPanel;
 
     @FXML
     private JFXButton btnSalir;
@@ -81,12 +84,14 @@ public class SecondaryController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        tabla = loader.getParent("tabla");
-        reguisterAdmin = loader.getParent("ReguisterAdmin");
-        game = loader.getParent("game");
+        try {
+            tabla = loader.getParent("tabla");
+            reguisterAdmin = loader.getParent("ReguisterAdmin");
 
-        
-        brPanel.setCenter(tabla);
+            brPanel.setCenter(tabla);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     @FXML
@@ -113,9 +118,44 @@ public class SecondaryController implements Initializable {
 
     @FXML
     void setGame(ActionEvent event) {
-        System.out.println("set game panel");
-        brPanel.setCenter(game);
 
+        if (game != null) {
+            if (confirmación("¿Quieres empesar de nuevo?")) {
+                game = null;
+                game = loader.getParent("game");
+                brPanel.setCenter(game);
+            } else {
+                System.out.println("No se empesara una nueva partia");
+            }
+
+            // System.out.println("set game panel");
+            // brPanel.setCenter(game);
+
+        } else {
+            game = loader.getParent("game");
+            brPanel.setCenter(game);
+
+        }
+
+    }
+
+    public boolean confirmación(String mensage) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación");
+        alert.setHeaderText(mensage);
+        alert.setContentText("Elige tu opción.");
+
+        ButtonType buttonTypeYes = new ButtonType("Sí", ButtonBar.ButtonData.YES);
+        ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.NO);
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeYes) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @FXML
@@ -142,27 +182,27 @@ public class SecondaryController implements Initializable {
         fileChooser.setTitle("Guardar en");
         fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Archivo de Texto", "*.txt"),
                 new ExtensionFilter("Todos los Archivos", "*.*"));
-        fileChooser.setInitialFileName(payer.getUsuario());
+        fileChooser.setInitialFileName(player.getUsuario());
         File archivoGuardado = fileChooser.showSaveDialog(btnBckUp.getScene().getWindow());
 
-        String usuario = payer.getUsuario();
-        String contrasena = payer.getContrasena();
-        String pregunta = payer.getPregunta();
-        String respuesta = payer.getRespuesta();
-        String tiempoJuego = payer.getTiempoGuego().toString();
-        int puntaje = payer.getPuntaje();
-        int turnos = payer.getTurnos();
-        int admin = payer.isAdmin();
-        
+        String usuario = player.getUsuario();
+        String contrasena = player.getContrasena();
+        String pregunta = player.getPregunta();
+        String respuesta = player.getRespuesta();
+        String tiempoJuego = player.getTiempoGuego().toString();
+        int puntaje = player.getPuntaje();
+        int turnos = player.getTurnos();
+        int admin = player.isAdmin();
+
         FileWriter writer = new FileWriter(archivoGuardado);
-        writer.write(usuario+";"+
-                    contrasena+";"+
-                    pregunta+";"+
-                    respuesta+";"+
-                    tiempoJuego+";"+
-                    puntaje+";"+
-                    turnos+";"+
-                    admin);
+        writer.write(usuario + ";" +
+                contrasena + ";" +
+                pregunta + ";" +
+                respuesta + ";" +
+                tiempoJuego + ";" +
+                puntaje + ";" +
+                turnos + ";" +
+                admin);
         writer.close();
 
     }

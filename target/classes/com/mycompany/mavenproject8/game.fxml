@@ -199,7 +199,7 @@
                                     <children>
                                         <Label fx:id="namePlayer" alignment="CENTER" text="P1" GridPane.rowIndex="1" />
                                         <Label fx:id="nameInvitado" alignment="CENTER" text="Invitado" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                        <Label alignment="CENTER" text="timer" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label fx:id="lbTimer" alignment="CENTER" text="timer" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                         <Label fx:id="puntosInvitado" alignment="CENTER" text="Puntos" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                         <Label fx:id="puntosPlayer" alignment="CENTER" text="Puntos" GridPane.rowIndex="2" />
                                     </children>

@@ -1,6 +1,6 @@
 package com.mycompany.mavenproject8.lista;
 
-import com.mycompany.mavenproject8.Oters.Payer;
+import com.mycompany.mavenproject8.Oters.Player;
 
 public class Lista {
     private Nodo primero;
@@ -45,7 +45,7 @@ public class Lista {
         return tamaño;
     }
 
-    public Payer get(int index) {
+    public Player get(int index) {
         if (isEmpy() || index < 0 || index >= tamaño) {
             return null;
         } else {
@@ -57,16 +57,16 @@ public class Lista {
         }
     }
 
-    public Payer getFirst() {
+    public Player getFirst() {
 
         return primero.getValue();
     }
 
-    public Payer getLast() {
+    public Player getLast() {
         return ultimo.getValue();
     }
 
-    public void addToFirst(Payer persona) {
+    public void addToFirst(Player persona) {
         Nodo nodo = new Nodo(persona);
         if (isEmpy()) {
             primero = nodo;
@@ -79,7 +79,7 @@ public class Lista {
         tamaño++;
     }
 
-    public void add(int index, Payer persona) {
+    public void add(int index, Player persona) {
         Nodo nodo = new Nodo(persona);
         if (index < 0 || index >= tamaño) {
             return;
@@ -106,11 +106,11 @@ public class Lista {
         }
     }
 
-    public boolean add(Payer persona) {
+    public boolean add(Player persona) {
         return addToLasd(persona);
     }
 
-    public boolean addToLasd(Payer persona) {
+    public boolean addToLasd(Player persona) {
         Nodo nodo = new Nodo(persona);
         if (isEmpy()) {
             primero = nodo;

@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
-import com.mycompany.mavenproject8.Oters.Payer;
+import com.mycompany.mavenproject8.Oters.Player;
 import com.mycompany.mavenproject8.lista.Lista;
 
 import javafx.event.ActionEvent;
@@ -74,7 +74,7 @@ public class ReguisterAdminController implements Initializable {
         }
         if (j > playerList.zise()) {
             
-        Payer newPayer = new Payer();
+        Player newPayer = new Player();
         newPayer.setUsuario(nameUser.getText());
         newPayer.setContrasena(contrasena.getText());
         newPayer.setPregunta(pregunta.getValue());

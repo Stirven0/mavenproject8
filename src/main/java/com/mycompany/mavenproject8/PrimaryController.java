@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 import com.jfoenix.controls.JFXComboBox;
-import com.mycompany.mavenproject8.Oters.Payer;
+import com.mycompany.mavenproject8.Oters.Player;
 import com.mycompany.mavenproject8.lista.Lista;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -32,10 +32,10 @@ public class PrimaryController implements Initializable {
     private static ResultSet rows;
     private static Lista playerList;
 
-    private static Payer payerselected;
+    private static Player playerselected;
 
-    public static Payer getPayerselected() {
-        return payerselected;
+    public static Player getPlayerselected() {
+        return playerselected;
     }
 
     static public Lista getPlayerList() {
@@ -141,7 +141,7 @@ public class PrimaryController implements Initializable {
                 int turnos = Integer.parseInt(rows.getString("turnos"));
                 int admin = Integer.parseInt(rows.getString("admin"));
 
-                Payer payer = new Payer(iD, usuario, contrasena, pregunta, respuesta, tiempoGuego, puntaje, turnos,
+                Player payer = new Player(iD, usuario, contrasena, pregunta, respuesta, tiempoGuego, puntaje, turnos,
                         admin);
                 playerList.add(payer);
             }
@@ -196,10 +196,10 @@ public class PrimaryController implements Initializable {
 
         } else {
             while ((j++) < playerList.zise()) {
-                Payer payeraux = playerList.get(j - 1);
+                Player payeraux = playerList.get(j - 1);
                 if (payeraux.getUsuario().equals(iniNombreUsuario.getText())
                         && payeraux.getContrasena().equals(iniContrasena.getText())) {
-                    payerselected = payeraux;
+                    playerselected = payeraux;
                     System.out.println("user is logued");
                     limpiarFormularios();
                     App.setRoot("secondary");
@@ -222,6 +222,37 @@ public class PrimaryController implements Initializable {
     @FXML
     void regBtn() throws IOException {
 
+        if (regNombreUsuario.getText().isEmpty()) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Mensage de Error");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Usuario esta vacio");
+            alerta.showAndWait();
+        }else if(regContrasena.getText().isEmpty()){
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Mensage de Error");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Contraseña esta vacia");
+            alerta.showAndWait();
+        }else if (regPregunta.getValue() == null) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Mensage de Error");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Seleccione alguna pregunta de seguridad");
+            alerta.showAndWait();
+        }else if(regRespuesta.getText().isEmpty()){
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Mensage de Error");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Respuesta esta vacia");
+            alerta.showAndWait();
+        }else{
+            regBtnEnviar();
+            
+        }
+    }
+
+    private void regBtnEnviar() {
         int j = 0;
         while ((j++) < playerList.zise()) {
 
@@ -235,7 +266,7 @@ public class PrimaryController implements Initializable {
             }
         }
         if (j > playerList.zise()) {
-            Payer newPayer = new Payer();
+            Player newPayer = new Player();
             newPayer.setUsuario(regNombreUsuario.getText());
             newPayer.setContrasena(regContrasena.getText());
             newPayer.setPregunta(regPregunta.getValue());
@@ -248,7 +279,7 @@ public class PrimaryController implements Initializable {
         limpiarFormularios();
     }
 
-    public static void eviarPayer(Payer newPayer, boolean admin) {
+    public static void eviarPayer(Player newPayer, boolean admin) {
         if (admin) {
             newPayer.setAdmin(1);
         }
@@ -269,7 +300,7 @@ public class PrimaryController implements Initializable {
             App.setRoot("gameToRegister");
 
         } catch (Exception e) {
-            payerselected = newPayer;
+            playerselected = newPayer;
             System.out.println("Player no guardado en el server " + e);
             try {
                 App.setRoot("gameToRegister");
@@ -280,45 +311,45 @@ public class PrimaryController implements Initializable {
         }
     }
 
-    @FXML
-    private void switchToSecondary() throws IOException {
-        // java.sql.Statement statement;
-        // ResultSet rows;
+    // @FXML
+    // private void switchToSecondary() throws IOException {
+    //     // java.sql.Statement statement;
+    //     // ResultSet rows;
 
-        // try {
-        // statement = cn.createStatement();
-        // rows = statement.executeQuery("SELECT * FROM data");
-        // while (rows.next()) {
-        // }
-        // } catch (SQLException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
-        System.out.println("");
-        // try {
+    //     // try {
+    //     // statement = cn.createStatement();
+    //     // rows = statement.executeQuery("SELECT * FROM data");
+    //     // while (rows.next()) {
+    //     // }
+    //     // } catch (SQLException e) {
+    //     // // TODO Auto-generated catch block
+    //     // e.printStackTrace();
+    //     // }
+    //     System.out.println("");
+    //     // try {
 
-        // ResultSet rows = this.rows;
-        // while (rows.next()) {
-        // String usuario = rows.getString("usuario");
-        // String contrasena = rows.getString("contrasena");
-        // if (usuario.equals(iniNombreUsuario.getText()) &&
-        // contrasena.equals(iniContrasena.getText())) {
-        // System.out.println("user and pass ok");
-        // App.setRoot("secondary");
-        // } else {
-        // Alert alerta = new Alert(Alert.AlertType.ERROR);
-        // alerta.setTitle("Mensage de Error");
-        // alerta.setHeaderText(null);
-        // alerta.setContentText("Usuario o Contraseña Incorrectos");
-        // alerta.showAndWait();
-        // }
-        // }
-        // } catch (SQLException e) {
-        // // TODO Auto-generated catch block
-        // System.out.println("Error: " + e);
-        // }
-        limpiarFormularios();
-    }
+    //     // ResultSet rows = this.rows;
+    //     // while (rows.next()) {
+    //     // String usuario = rows.getString("usuario");
+    //     // String contrasena = rows.getString("contrasena");
+    //     // if (usuario.equals(iniNombreUsuario.getText()) &&
+    //     // contrasena.equals(iniContrasena.getText())) {
+    //     // System.out.println("user and pass ok");
+    //     // App.setRoot("secondary");
+    //     // } else {
+    //     // Alert alerta = new Alert(Alert.AlertType.ERROR);
+    //     // alerta.setTitle("Mensage de Error");
+    //     // alerta.setHeaderText(null);
+    //     // alerta.setContentText("Usuario o Contraseña Incorrectos");
+    //     // alerta.showAndWait();
+    //     // }
+    //     // }
+    //     // } catch (SQLException e) {
+    //     // // TODO Auto-generated catch block
+    //     // System.out.println("Error: " + e);
+    //     // }
+    //     limpiarFormularios();
+    // }
 
     private void limpiarFormularios() {
         iniNombreUsuario.setText("");

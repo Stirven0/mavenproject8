@@ -2,7 +2,7 @@ package com.mycompany.mavenproject8.Oters;
 
 import java.sql.Time;
 
-public class Payer {
+public class Player {
     private int ID;
     private String usuario;
     private String contrasena;
@@ -15,7 +15,7 @@ public class Payer {
     
     
     
-    public Payer(int iD, String usuario, String contrasena, String pregunta, String respuesta, Time tiempoGuego,
+    public Player(int iD, String usuario, String contrasena, String pregunta, String respuesta, Time tiempoGuego,
             int puntaje, int turnos,int admin) {
         this.ID = iD;
         this.usuario = usuario;
@@ -27,7 +27,7 @@ public class Payer {
         this.turnos = turnos;
         this.admin = admin;
     }
-    public Payer() {
+    public Player() {
         this.ID = 0;
         this.usuario = "";
         this.contrasena = "";

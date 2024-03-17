@@ -1,16 +1,16 @@
 package com.mycompany.mavenproject8.lista;
 
-import com.mycompany.mavenproject8.Oters.Payer;
+import com.mycompany.mavenproject8.Oters.Player;
 
 public class Nodo {
     private Nodo siguiente;
     private Nodo anterior;
 
 
-    private Payer value;
+    private Player value;
 
 
-    public Nodo(Payer persona) {
+    public Nodo(Player persona) {
         this.value = persona;
         this.anterior = null;
         this.siguiente = null;
@@ -29,10 +29,10 @@ public class Nodo {
     public void setAnterior(Nodo anterior) {
         this.anterior = anterior;
     }
-    public Payer getValue() {
+    public Player getValue() {
         return value;
     }
-    public void setValue(Payer persona) {
+    public void setValue(Player persona) {
         this.value = persona;
     }
     
