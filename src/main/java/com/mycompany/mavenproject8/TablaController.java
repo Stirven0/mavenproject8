@@ -60,7 +60,6 @@ public class TablaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         list = PrimaryController.getPlayerList();
         System.out.println("Se creo la lista correcta mente");
         players = FXCollections.observableArrayList();

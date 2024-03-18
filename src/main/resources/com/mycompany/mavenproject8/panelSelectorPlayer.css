@@ -1,0 +1,16 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 17 mar 2024, 19:18:41
+    Author     : julio
+*/
+
+.panel {
+  -fx-background-color: white; /* Color de fondo por defecto */
+}
+
+.panel:hover {
+  -fx-background-color: #90EE90; /* Color de fondo al pasar el cursor */
+}

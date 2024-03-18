@@ -48,15 +48,19 @@ public class SecondaryController implements Initializable {
         return player;
     }
 
+    
     @FXML
-    private static JFXButton btnBckUp;
+    private BorderPane brPanel;
     @FXML
-    private static JFXButton eliminar;
+    private  JFXButton btnBckUp;
+    @FXML
+    private  JFXButton eliminar;
     @FXML
     private AnchorPane panelSuperior;
     @FXML
-    private static JFXButton btnRestore;
+    private  JFXButton btnRestore;
 
+    
     @FXML
     private JFXButton btnAgegar;
 
@@ -72,8 +76,6 @@ public class SecondaryController implements Initializable {
     @FXML
     private ImageView cerrar;
 
-    @FXML
-    private static BorderPane brPanel;
 
     @FXML
     private JFXButton btnSalir;
@@ -121,8 +123,13 @@ public class SecondaryController implements Initializable {
 
         if (game != null) {
             if (confirmación("¿Quieres empesar de nuevo?")) {
-                game = null;
-                game = loader.getParent("game");
+                fxmlLoader loader = new fxmlLoader();
+                Parent newgame = loader.getParent("game");
+
+                game = newgame;
+                // game =  loader.getParent("game");
+
+
                 brPanel.setCenter(game);
             } else {
                 System.out.println("No se empesara una nueva partia");
@@ -182,7 +189,8 @@ public class SecondaryController implements Initializable {
         fileChooser.setTitle("Guardar en");
         fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Archivo de Texto", "*.txt"),
                 new ExtensionFilter("Todos los Archivos", "*.*"));
-        fileChooser.setInitialFileName(player.getUsuario());
+        // fileChooser.setInitialFileName("julio");
+        fileChooser.setInitialFileName(TablaController.getSelectedPayer().getUsuario());
         File archivoGuardado = fileChooser.showSaveDialog(btnBckUp.getScene().getWindow());
 
         String usuario = player.getUsuario();
@@ -215,7 +223,7 @@ public class SecondaryController implements Initializable {
 
         fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Archivo de Texto", "*.txt"),
                 new ExtensionFilter("Todos los Archivos", "*.*"));
-        File restore = fileChooser.showOpenDialog(null);
+        File restore = fileChooser.showOpenDialog(btnRestore.getScene().getWindow());
         try (BufferedReader br = new BufferedReader(new FileReader(restore))) {
             StringBuilder sBuilder = new StringBuilder();
             String linea;

@@ -451,7 +451,7 @@ public class GameController implements Initializable {
                 if (twoPlayer) {
                     if (totalPuntosAlcansados()) {
                         System.out.println("Player: " + playerSelec.getUsuario() + " Es el ganador");
-
+                        boxDisable(true);
                         cuentaRegresiva.stop();
                     }
 
@@ -469,7 +469,11 @@ public class GameController implements Initializable {
                         boxDisable(true);
                         cuentaRegresiva.stop();
 
-                        System.out.println("Player: " + playerSelec.getUsuario() + " Es el ganador");
+                        if (totalPuntosAlcansados()) {
+                            System.out.println("Lo has destapado todo");
+                        } else {
+                            System.out.println("No has podido destapar todo ");
+                        }
 
                         System.out.println("se acabo el tiempo");
 
@@ -545,30 +549,30 @@ public class GameController implements Initializable {
 
         pnelIN.setVisible(false);
     }
-
-    @FXML
-    void singelPlayyerMouseEntered(MouseEvent event) {
-        singelPlayyer.setStyle("-fx-background-color: #90EE90;");
-
-    }
-
-    @FXML
-    void twoPlayerMouseEnterred(MouseEvent event) {
-        twoPlayer.setStyle("-fx-background-color: #90EE90;");
-
-    }
-
-    @FXML
-    void singelPlayerMouseExite(MouseEvent event) {
-
-        singelPlayyer.setStyle("-fx-background-color: #ffffff;");
-    }
-
-    @FXML
-    void twoPlayerMouseExite(MouseEvent event) {
-
-        twoPlayer.setStyle("-fx-background-color: #ffffff;");
-    }
+//
+//    @FXML
+//    void singelPlayyerMouseEntered(MouseEvent event) {
+//        singelPlayyer.setStyle("-fx-background-color: #90EE90;");
+//
+//    }
+//
+//    @FXML
+//    void twoPlayerMouseEnterred(MouseEvent event) {
+//        twoPlayer.setStyle("-fx-background-color: #90EE90;");
+//
+//    }
+//
+//    @FXML
+//    void singelPlayerMouseExite(MouseEvent event) {
+//
+//        singelPlayyer.setStyle("-fx-background-color: #ffffff;");
+//    }
+//
+//    @FXML
+//    void twoPlayerMouseExite(MouseEvent event) {
+//
+//        twoPlayer.setStyle("-fx-background-color: #ffffff;");
+//    }
 
     @FXML
     void singelPlayyerMouseClicked(MouseEvent event) {
