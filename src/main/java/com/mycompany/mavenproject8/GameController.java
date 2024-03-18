@@ -549,30 +549,6 @@ public class GameController implements Initializable {
 
         pnelIN.setVisible(false);
     }
-//
-//    @FXML
-//    void singelPlayyerMouseEntered(MouseEvent event) {
-//        singelPlayyer.setStyle("-fx-background-color: #90EE90;");
-//
-//    }
-//
-//    @FXML
-//    void twoPlayerMouseEnterred(MouseEvent event) {
-//        twoPlayer.setStyle("-fx-background-color: #90EE90;");
-//
-//    }
-//
-//    @FXML
-//    void singelPlayerMouseExite(MouseEvent event) {
-//
-//        singelPlayyer.setStyle("-fx-background-color: #ffffff;");
-//    }
-//
-//    @FXML
-//    void twoPlayerMouseExite(MouseEvent event) {
-//
-//        twoPlayer.setStyle("-fx-background-color: #ffffff;");
-//    }
 
     @FXML
     void singelPlayyerMouseClicked(MouseEvent event) {
